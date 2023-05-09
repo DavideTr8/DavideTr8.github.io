@@ -4,4 +4,4 @@ title: About
 permalink: /testing/
 ---
 # Just a test
-Wow this is awesome.
+Wow this is awesome :smile:.
