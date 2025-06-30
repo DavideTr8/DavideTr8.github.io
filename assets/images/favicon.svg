@@ -1,0 +1,29 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c1810;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" fill="url(#bgGradient)" rx="4" ry="4"/>
+  
+  <!-- Border -->
+  <rect x="2" y="2" width="28" height="28" fill="none" stroke="url(#goldGradient)" stroke-width="2" rx="3" ry="3"/>
+  
+  <!-- Character Head -->
+  <circle cx="16" cy="12" r="6" fill="#f5f5dc"/>
+  
+  <!-- Face Features -->
+  <circle cx="14" cy="11" r="1" fill="#2c1810"/>
+  <circle cx="18" cy="11" r="1" fill="#2c1810"/>
+  <path d="M 14 14 Q 16 15 18 14" stroke="#2c1810" stroke-width="1" fill="none"/>
+  
+  <!-- Code Symbol -->
+  <text x="16" y="26" font-family="monospace" font-size="8" fill="#d4af37" text-anchor="middle">&lt;/&gt;</text>
+</svg> 

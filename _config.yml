@@ -18,13 +18,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Trotto's homepage
-email: davide1angioni@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Just trying to learn how to use Jekyll for creating pages.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  DavideTr8
+# Site metadata
+title: "RPG Character Page"
+description: "Interactive RPG character showcase with medieval fantasy theme"
+author: "DavideTr8"
+email: "davide@example.com"
+
+# GitHub Pages specific
+baseurl: ""  # Empty for user/organization sites
+url: "https://davidetr8.github.io"  # Your GitHub Pages URL
 
 # Build settings
 remote_theme: pages-themes/architect@v0.2.0
@@ -32,6 +34,46 @@ plugins:
   - jekyll-feed
   - jekyll-remote-theme
   - jemoji
+markdown: kramdown
+highlighter: rouge
+
+# Performance settings
+exclude: ["node_modules", "vendor", ".git", "specs"]
+include: ["_pages", "_drafts"]
+
+# Enable compression
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
+
+# SEO settings
+google_analytics: ""  # Add your GA tracking ID if needed
+google_analytics_anonymize_ip: true
+
+# Social media
+twitter:
+  username: ""
+github:
+  username: "DavideTr8"
+
+# Collections
+collections:
+  character:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "character"
+    values:
+      layout: "character"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
