@@ -48,7 +48,6 @@ module.exports = {
     // Performance
     'no-loop-func': 'error',
     'no-new-object': 'error',
-    'no-new-array': 'error',
     
     // Security
     'no-implied-eval': 'error',

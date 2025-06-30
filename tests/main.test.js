@@ -68,58 +68,67 @@ describe('RPG Character Page', () => {
     test('should have character data object with required properties', () => {
       // Mock character data for testing
       const characterData = {
-        name: "Davide the Code Sage",
-        class: "Full Stack Developer",
-        title: "Master of Algorithms and Web Craft",
+        name: "Davide the AI-Mancer",
+        class: "AI and Math Sage",
+        title: "Summoner of Intelligent Agents",
         stats: {
           health: 85,
-          strength: 70,
-          agility: 80,
+          strength: 60,
+          agility: 70,
           speed: 75,
           stealth: 65,
-          intelligence: 90,
-          wisdom: 85,
-          charisma: 70
+          intelligence: 95,
+          wisdom: 90,
+          charisma: 75,
+          arcane: 95,
+          mathematics: 95
         },
         skills: {
+          "Machine Learning": 5,
+          "Deep Learning": 5,
+          "Mathematical Optimization": 5,
+          "Reinforcement Learning": 4,
+          "Neural Networks": 5,
+          "Statistical Analysis": 5,
+          "Algorithm Design": 5,
+          "Python": 5,
+          "TensorFlow": 4,
+          "PyTorch": 4,
+          "Linear Algebra": 5,
+          "Calculus": 5,
+          "Probability Theory": 4,
+          "Agent Architecture": 5,
           "Problem Solving": 5,
-          "Communication": 4,
-          "Teamwork": 4,
-          "JavaScript": 5,
-          "Python": 4,
-          "React": 4,
-          "Node.js": 4,
-          "Machine Learning": 3,
-          "DevOps": 3,
-          "UI/UX Design": 3
+          "Research & Development": 4
         },
         weaknesses: {
-          "Public Speaking": "Gets nervous in large crowds",
-          "Perfectionism": "Sometimes spends too much time on details",
-          "New Technologies": "Takes time to adapt to completely new paradigms"
+          "Physical Combat": "Prefers intellectual challenges over physical ones",
+          "Social Gatherings": "More comfortable with algorithms than large crowds",
+          "Real-time Decisions": "Takes time to analyze complex situations thoroughly"
         },
         strengths: {
-          "Problem Solving": "Excellent analytical thinking",
-          "Learning": "Quick to pick up new concepts",
-          "Collaboration": "Works well in team environments"
+          "Mathematical Intuition": "Exceptional ability to see patterns in data",
+          "Algorithmic Thinking": "Can break down complex problems into solvable components",
+          "AI Agent Design": "Expert at creating intelligent systems that solve real-world problems",
+          "Research Focus": "Deep understanding of cutting-edge AI and mathematical concepts"
         },
         equipment: [
-          { name: "Python", icon: "🐍", description: "Primary programming language" },
-          { name: "JavaScript", icon: "⚡", description: "Web development powerhouse" },
-          { name: "React", icon: "⚛️", description: "Frontend framework" },
-          { name: "Node.js", icon: "🟢", description: "Backend runtime" },
-          { name: "Docker", icon: "🐳", description: "Containerization tool" },
-          { name: "Git", icon: "📚", description: "Version control system" },
-          { name: "AWS", icon: "☁️", description: "Cloud platform" },
-          { name: "PostgreSQL", icon: "🐘", description: "Database system" }
+          { name: "Neural Network Staff", icon: "🧠", description: "Primary tool for deep learning and pattern recognition" },
+          { name: "Optimization Orb", icon: "⚡", description: "Mathematical optimization and algorithm enhancement" },
+          { name: "Agent Summoning Crystal", icon: "🔮", description: "Creates intelligent agents to solve complex problems" },
+          { name: "TensorFlow Grimoire", icon: "📚", description: "Advanced machine learning framework mastery" },
+          { name: "PyTorch Catalyst", icon: "🔥", description: "Dynamic neural network construction and training" },
+          { name: "Mathematical Matrix", icon: "🔢", description: "Linear algebra and mathematical computation tools" },
+          { name: "Probability Prism", icon: "🎲", description: "Statistical analysis and probabilistic modeling" },
+          { name: "Reinforcement Learning Relic", icon: "🎯", description: "Agent training through reward-based learning" }
         ],
-        lore: "Born in the digital realm, Davide the Code Sage has mastered the ancient arts of programming and web development. With years of experience crafting digital solutions, he wields the power of modern technologies to create seamless user experiences and robust applications. His journey through the ever-evolving landscape of software development has taught him the importance of clean code, user-centered design, and continuous learning."
+        lore: "Born in the realm of algorithms and mathematical theory, Davide the AI-Mancer has mastered the ancient arts of artificial intelligence and mathematical optimization. As a true sage of the digital age, he possesses the rare ability to summon intelligent agents that can solve complex problems in optimal ways. His journey through the ever-evolving landscape of machine learning and mathematical research has taught him that the most powerful magic lies not in brute force, but in elegant algorithms and intelligent systems. With his deep understanding of neural networks, optimization theory, and agent-based architectures, he can transform any problem into an opportunity for intelligent automation and mathematical insight."
       };
 
       expect(characterData).toBeDefined();
-      expect(characterData.name).toBe("Davide the Code Sage");
-      expect(characterData.class).toBe("Full Stack Developer");
-      expect(characterData.title).toBe("Master of Algorithms and Web Craft");
+      expect(characterData.name).toBe("Davide the AI-Mancer");
+      expect(characterData.class).toBe("AI and Math Sage");
+      expect(characterData.title).toBe("Summoner of Intelligent Agents");
       expect(characterData.stats).toBeDefined();
       expect(characterData.skills).toBeDefined();
       expect(characterData.weaknesses).toBeDefined();
@@ -132,13 +141,15 @@ describe('RPG Character Page', () => {
       const characterData = {
         stats: {
           health: 85,
-          strength: 70,
-          agility: 80,
+          strength: 60,
+          agility: 70,
           speed: 75,
           stealth: 65,
-          intelligence: 90,
-          wisdom: 85,
-          charisma: 70
+          intelligence: 95,
+          wisdom: 90,
+          charisma: 75,
+          arcane: 95,
+          mathematics: 95
         }
       };
 
@@ -152,16 +163,22 @@ describe('RPG Character Page', () => {
     test('should have valid skills with ratings 1-5', () => {
       const characterData = {
         skills: {
+          "Machine Learning": 5,
+          "Deep Learning": 5,
+          "Mathematical Optimization": 5,
+          "Reinforcement Learning": 4,
+          "Neural Networks": 5,
+          "Statistical Analysis": 5,
+          "Algorithm Design": 5,
+          "Python": 5,
+          "TensorFlow": 4,
+          "PyTorch": 4,
+          "Linear Algebra": 5,
+          "Calculus": 5,
+          "Probability Theory": 4,
+          "Agent Architecture": 5,
           "Problem Solving": 5,
-          "Communication": 4,
-          "Teamwork": 4,
-          "JavaScript": 5,
-          "Python": 4,
-          "React": 4,
-          "Node.js": 4,
-          "Machine Learning": 3,
-          "DevOps": 3,
-          "UI/UX Design": 3
+          "Research & Development": 4
         }
       };
 
@@ -175,12 +192,15 @@ describe('RPG Character Page', () => {
     test('should have valid weaknesses and strengths', () => {
       const characterData = {
         weaknesses: {
-          "Public Speaking": "Gets nervous in large crowds",
-          "Perfectionism": "Sometimes spends too much time on details"
+          "Physical Combat": "Prefers intellectual challenges over physical ones",
+          "Social Gatherings": "More comfortable with algorithms than large crowds",
+          "Real-time Decisions": "Takes time to analyze complex situations thoroughly"
         },
         strengths: {
-          "Problem Solving": "Excellent analytical thinking",
-          "Learning": "Quick to pick up new concepts"
+          "Mathematical Intuition": "Exceptional ability to see patterns in data",
+          "Algorithmic Thinking": "Can break down complex problems into solvable components",
+          "AI Agent Design": "Expert at creating intelligent systems that solve real-world problems",
+          "Research Focus": "Deep understanding of cutting-edge AI and mathematical concepts"
         }
       };
 
@@ -198,7 +218,7 @@ describe('RPG Character Page', () => {
     test('should have equipment items with required properties', () => {
       const characterData = {
         equipment: [
-          { name: "Python", icon: "🐍", description: "Primary programming language" }
+          { name: "Neural Network Staff", icon: "🧠", description: "Primary tool for deep learning and pattern recognition" }
         ]
       };
 

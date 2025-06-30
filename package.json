@@ -21,6 +21,9 @@
   ],
   "author": "DavideTr8",
   "license": "MIT",
+  "dependencies": {
+    "three": "^0.158.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.23.0",

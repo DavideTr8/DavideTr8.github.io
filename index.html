@@ -5,7 +5,68 @@ description: "Interactive RPG character showcase with medieval fantasy theme"
 ---
 
 <div class="container">
-    <div class="character-sheet">
+    <!-- 3D Environment Container -->
+    <div id="3d-environment" class="environment-container">
+        <canvas id="3d-canvas"></canvas>
+        
+        <!-- 3D Environment Overlay -->
+        <div class="environment-overlay">
+            <div class="character-info">
+                <h1 class="character-name">Loading...</h1>
+                <div class="character-class">Loading...</div>
+                <div class="character-title">Loading...</div>
+            </div>
+            
+            <!-- Instructions -->
+            <div class="instructions">
+                <p>Click the character to view lore and skills</p>
+                <p>Hover over equipment to see details</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dialogue Window (Hidden by default) -->
+    <div id="dialogue-window" class="dialogue-window hidden">
+        <div class="dialogue-content">
+            <div class="dialogue-header">
+                <h2 id="dialogue-title">Character Information</h2>
+                <button class="dialogue-close" aria-label="Close dialogue">×</button>
+            </div>
+            
+            <div class="dialogue-tabs">
+                <button class="tab-button active" data-tab="lore">Lore</button>
+                <button class="tab-button" data-tab="skills">Skills</button>
+            </div>
+            
+            <div class="dialogue-body">
+                <div id="lore-tab" class="tab-content active">
+                    <div class="lore-content">
+                        <!-- Lore will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div id="skills-tab" class="tab-content">
+                    <div class="skills-content">
+                        <!-- Skills will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Equipment Tooltip (Hidden by default) -->
+    <div id="equipment-tooltip" class="equipment-tooltip hidden">
+        <div class="tooltip-content">
+            <div class="tooltip-header">
+                <span class="tooltip-icon"></span>
+                <span class="tooltip-name"></span>
+            </div>
+            <div class="tooltip-description"></div>
+        </div>
+    </div>
+
+    <!-- Legacy Character Sheet (Hidden by default, for fallback) -->
+    <div class="character-sheet legacy-hidden">
         <!-- Character Header -->
         <div class="character-header">
             <h1 class="character-name">Loading...</h1>
@@ -55,3 +116,8 @@ description: "Interactive RPG character showcase with medieval fantasy theme"
         </section>
     </div>
 </div> 
+<script type="module">
+  import * as THREE from 'https://unpkg.com/three@0.158.0/build/three.module.js';
+  window.THREE = THREE;
+</script>
+<script type="module" src="/assets/js/main.js"></script> 

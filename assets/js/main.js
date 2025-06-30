@@ -1,90 +1,220 @@
 // RPG Character Page - Main JavaScript
+import Environment3D from './3d-environment.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     // Character data - this would be populated by the programmer
     const characterData = {
-        name: 'Davide the Code Sage',
-        class: 'Full Stack Developer',
-        title: 'Master of Algorithms and Web Craft',
+        name: 'Davide the AI-Mancer',
+        class: 'AI and Math Sage',
+        title: 'Summoner of Intelligent Agents',
         stats: {
             health: 85,
-            strength: 70,
-            agility: 80,
+            strength: 60,
+            agility: 70,
             speed: 75,
             stealth: 65,
-            intelligence: 90,
-            wisdom: 85,
-            charisma: 70
+            intelligence: 95,
+            wisdom: 90,
+            charisma: 75,
+            arcane: 95,
+            mathematics: 95
         },
         skills: {
+            'Machine Learning': 5,
+            'Deep Learning': 5,
+            'Mathematical Optimization': 5,
+            'Reinforcement Learning': 4,
+            'Neural Networks': 5,
+            'Statistical Analysis': 5,
+            'Algorithm Design': 5,
+            'Python': 5,
+            'TensorFlow': 4,
+            'PyTorch': 4,
+            'Linear Algebra': 5,
+            'Calculus': 5,
+            'Probability Theory': 4,
+            'Agent Architecture': 5,
             'Problem Solving': 5,
-            'Communication': 4,
-            'Teamwork': 4,
-            'JavaScript': 5,
-            'Python': 4,
-            'React': 4,
-            'Node.js': 4,
-            'Machine Learning': 3,
-            'DevOps': 3,
-            'UI/UX Design': 3
+            'Research & Development': 4
         },
         weaknesses: {
-            'Public Speaking': 'Gets nervous in large crowds',
-            'Perfectionism': 'Sometimes spends too much time on details',
-            'New Technologies': 'Takes time to adapt to completely new paradigms'
+            'Physical Combat': 'Prefers intellectual challenges over physical ones',
+            'Social Gatherings': 'More comfortable with algorithms than large crowds',
+            'Real-time Decisions': 'Takes time to analyze complex situations thoroughly'
         },
         strengths: {
-            'Problem Solving': 'Excellent analytical thinking',
-            'Learning': 'Quick to pick up new concepts',
-            'Collaboration': 'Works well in team environments'
+            'Mathematical Intuition': 'Exceptional ability to see patterns in data',
+            'Algorithmic Thinking': 'Can break down complex problems into solvable components',
+            'AI Agent Design': 'Expert at creating intelligent systems that solve real-world problems',
+            'Research Focus': 'Deep understanding of cutting-edge AI and mathematical concepts'
         },
         equipment: [
-            { name: 'Python', icon: '🐍', description: 'Primary programming language' },
-            { name: 'JavaScript', icon: '⚡', description: 'Web development powerhouse' },
-            { name: 'React', icon: '⚛️', description: 'Frontend framework' },
-            { name: 'Node.js', icon: '🟢', description: 'Backend runtime' },
-            { name: 'Docker', icon: '🐳', description: 'Containerization tool' },
-            { name: 'Git', icon: '📚', description: 'Version control system' },
-            { name: 'AWS', icon: '☁️', description: 'Cloud platform' },
-            { name: 'PostgreSQL', icon: '🐘', description: 'Database system' }
+            { name: 'Neural Network Staff', icon: '🧠', description: 'Primary tool for deep learning and pattern recognition' },
+            { name: 'Optimization Orb', icon: '⚡', description: 'Mathematical optimization and algorithm enhancement' },
+            { name: 'Agent Summoning Crystal', icon: '🔮', description: 'Creates intelligent agents to solve complex problems' },
+            { name: 'TensorFlow Grimoire', icon: '📚', description: 'Advanced machine learning framework mastery' },
+            { name: 'PyTorch Catalyst', icon: '🔥', description: 'Dynamic neural network construction and training' },
+            { name: 'Mathematical Matrix', icon: '🔢', description: 'Linear algebra and mathematical computation tools' },
+            { name: 'Probability Prism', icon: '🎲', description: 'Statistical analysis and probabilistic modeling' },
+            { name: 'Reinforcement Learning Relic', icon: '🎯', description: 'Agent training through reward-based learning' }
         ],
-        lore: 'Born in the digital realm, Davide the Code Sage has mastered the ancient arts of programming and web development. With years of experience crafting digital solutions, he wields the power of modern technologies to create seamless user experiences and robust applications. His journey through the ever-evolving landscape of software development has taught him the importance of clean code, user-centered design, and continuous learning.'
+        lore: 'Born in the realm of algorithms and mathematical theory, Davide the AI-Mancer has mastered the ancient arts of artificial intelligence and mathematical optimization. As a true sage of the digital age, he possesses the rare ability to summon intelligent agents that can solve complex problems in optimal ways. His journey through the ever-evolving landscape of machine learning and mathematical research has taught him that the most powerful magic lies not in brute force, but in elegant algorithms and intelligent systems. With his deep understanding of neural networks, optimization theory, and agent-based architectures, he can transform any problem into an opportunity for intelligent automation and mathematical insight.'
     };
+
+    // Global variables
+    let environment3D = null;
+    let is3DSupported = false;
 
     // Initialize the page
     initializeCharacterPage();
 
     function initializeCharacterPage() {
+        // Check if WebGL is supported
+        is3DSupported = checkWebGLSupport();
+
+        if (is3DSupported) {
+            initialize3DEnvironment();
+        } else {
+            // Fallback to 2D version
+            showLegacyVersion();
+        }
+
         populateCharacterData();
         setupInteractivity();
         setupAccessibility();
+        setupDialogueSystem();
+    }
+
+    function checkWebGLSupport() {
+        try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext &&
+                     (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function initialize3DEnvironment() {
+        try {
+            environment3D = new Environment3D('3d-environment', characterData);
+
+            // Update character info in overlay
+            const nameElement = document.querySelector('.environment-overlay .character-name');
+            const classElement = document.querySelector('.environment-overlay .character-class');
+            const titleElement = document.querySelector('.environment-overlay .character-title');
+
+            if (nameElement) {nameElement.textContent = characterData.name;}
+            if (classElement) {classElement.textContent = characterData.class;}
+            if (titleElement) {titleElement.textContent = characterData.title;}
+
+            // Store reference for potential future use
+            window.environment3D = environment3D;
+
+        } catch (error) {
+            // Fallback to legacy version if 3D initialization fails
+            showLegacyVersion();
+        }
+    }
+
+    function showLegacyVersion() {
+        // Hide 3D environment and show legacy character sheet
+        const environmentContainer = document.getElementById('3d-environment');
+        const legacySheet = document.querySelector('.character-sheet');
+
+        if (environmentContainer) {
+            environmentContainer.style.display = 'none';
+        }
+
+        if (legacySheet) {
+            legacySheet.classList.remove('legacy-hidden');
+        }
+    }
+
+    function setupDialogueSystem() {
+        // Setup dialogue window close button
+        const closeButton = document.querySelector('.dialogue-close');
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                const dialogueWindow = document.getElementById('dialogue-window');
+                dialogueWindow.classList.add('hidden');
+            });
+        }
+
+        // Setup tab switching
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                switchTab(targetTab);
+            });
+        });
+
+        // Close dialogue on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const dialogueWindow = document.getElementById('dialogue-window');
+                if (!dialogueWindow.classList.contains('hidden')) {
+                    dialogueWindow.classList.add('hidden');
+                }
+            }
+        });
+    }
+
+    function switchTab(targetTab) {
+        // Update active tab button
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+            if (button.getAttribute('data-tab') === targetTab) {
+                button.classList.add('active');
+            }
+        });
+
+        // Update active tab content
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === `${targetTab}-tab`) {
+                content.classList.add('active');
+            }
+        });
     }
 
     function populateCharacterData() {
-        // Populate character header
-        const nameElement = document.querySelector('.character-name');
-        const classElement = document.querySelector('.character-class');
-        const titleElement = document.querySelector('.character-title');
+        // Populate character header (for both 3D and legacy)
+        const nameElements = document.querySelectorAll('.character-name');
+        const classElements = document.querySelectorAll('.character-class');
+        const titleElements = document.querySelectorAll('.character-title');
 
-        if (nameElement) {nameElement.textContent = characterData.name;}
-        if (classElement) {classElement.textContent = characterData.class;}
-        if (titleElement) {titleElement.textContent = characterData.title;}
+        nameElements.forEach(element => {
+            if (element.textContent === 'Loading...') {
+                element.textContent = characterData.name;
+            }
+        });
 
-        // Populate stats
-        populateStats();
+        classElements.forEach(element => {
+            if (element.textContent === 'Loading...') {
+                element.textContent = characterData.class;
+            }
+        });
 
-        // Populate skills
-        populateSkills();
+        titleElements.forEach(element => {
+            if (element.textContent === 'Loading...') {
+                element.textContent = characterData.title;
+            }
+        });
 
-        // Populate weaknesses and strengths
-        populateWeaknessesAndStrengths();
-
-        // Populate equipment
-        populateEquipment();
-
-        // Populate lore
-        populateLore();
+        // Only populate legacy sections if 3D is not supported
+        if (!is3DSupported) {
+            populateStats();
+            populateSkills();
+            populateWeaknessesAndStrengths();
+            populateEquipment();
+            populateLore();
+        }
     }
 
     function populateStats() {
@@ -131,7 +261,9 @@ document.addEventListener('DOMContentLoaded', function() {
             stealth: 'Ability to move unnoticed',
             intelligence: 'Problem-solving and analytical thinking',
             wisdom: 'Experience and decision-making ability',
-            charisma: 'Social influence and communication'
+            charisma: 'Social influence and communication',
+            arcane: 'Ability to harness magical energies',
+            mathematics: 'Ability to solve complex mathematical problems'
         };
 
         const description = descriptions[stat] || 'Character attribute';
@@ -421,7 +553,9 @@ document.addEventListener('DOMContentLoaded', function() {
             stealth: '👤',
             intelligence: '🧠',
             wisdom: '📚',
-            charisma: '🎭'
+            charisma: '🎭',
+            arcane: '🔮',
+            mathematics: '🔢'
         };
         return icons[stat] || '📊';
     }
